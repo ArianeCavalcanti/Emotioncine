@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Filme</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="light-mode">
+
+    <!-- Navbar de largura total -->
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center text-white fw-bold fs-3" href="#">
+                <!-- Logo aqui -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" th:href="@{/filmes}">Filmes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" th:href="@{/analises}">Análises</a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="toggle-theme" class="btn btn-outline-light ms-3">Modo Escuro</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Formulário de Cadastro -->
+    <div class="container container-formulario">
+        <div class="card shadow-lg p-4 form-filme">
+            <h2 class="text-center text-primary">Cadastrar Novo Filme</h2>
+            
+            <form th:action="@{/filmes/novo}" method="post" th:object="${filme}" class="mt-4 " >
+
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Título:</label>
+                    <input type="text" id="titulo" name="titulo" class="form-control" th:field="*{titulo}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="sinopse" class="form-label">Sinopse:</label>
+                    <textarea id="sinopse" name="sinopse" class="form-control" th:field="*{sinopse}" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="genero" class="form-label">Gênero:</label>
+                    <input type="text" id="genero" name="genero" class="form-control" th:field="*{genero}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="anoLancamento" class="form-label">Ano de Lançamento:</label>
+                    <input type="number" id="anoLancamento" name="anoLancamento" class="form-control" th:field="*{anoLancamento}" required>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Adicionar Filme</button>
+                <a th:if="${filme.id != null}" th:href="@{'/analises/novo?filmeId=' + ${filme.id}}" class="btn btn-secondary">Adicionar Análise</a>
+
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+     
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>
+

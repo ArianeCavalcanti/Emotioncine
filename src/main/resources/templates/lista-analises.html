@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Análises</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="page-lista">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">EmotionCine</a>
+
+           <button id="toggle-theme" class="btn btn-outline-light ms-3">Modo Escuro</button>
+        </div>
+    </nav>
+
+    <!-- Container Principal com a tabela de análises -->
+    <div class="container table-container">
+
+        <!-- Tabela de Análises -->
+        <table class="table table-striped mt-4" id="tableContainer">
+            <thead class="table-dark">
+                <tr>
+                    <th>Filme</th>
+                    <th>Comentário</th>
+                    <th>Nota</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="analise : ${analises}">
+                    <td th:text="${analise.filme.titulo}"></td>
+                    <td th:text="${analise.comentario}"></td>
+                    <td th:text="${analise.nota}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            <a th:href="@{/filmes}" class="btn btn-primary">Voltar</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Importando o JavaScript da pasta 'js' -->
+    <script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>
